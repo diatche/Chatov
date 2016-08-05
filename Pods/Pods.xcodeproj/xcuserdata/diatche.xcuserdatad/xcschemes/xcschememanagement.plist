@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NextGrowingTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Chatov.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>010AD1054A5753E50447D06AEBCD6664</key>
+		<key>01BD1F768E09300F56E19C8760AC0E36</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1059F6E0CA30257261867DF4EDA91CF4</key>
+		<key>3E15017C3692C07CADBDE7701EE16E72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4525BD2CEE5F088E1F4CEE5B87226B1D</key>
+		<key>6365D1196FB71360F1D9604997F2CED7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CA7F5E8B706692B674CABA90153D7FD8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
