@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48371E540100907CF8F9EB75 /* Pods_Chatov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D8FC9B7F6513CEF0654347 /* Pods_Chatov.framework */; };
 		A41117C91D548B2C00163D0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117C81D548B2C00163D0C /* AppDelegate.swift */; };
 		A41117CB1D548B2C00163D0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117CA1D548B2C00163D0C /* ViewController.swift */; };
 		A41117CE1D548B2C00163D0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41117CC1D548B2C00163D0C /* Main.storyboard */; };
 		A41117D01D548B2C00163D0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41117CF1D548B2C00163D0C /* Assets.xcassets */; };
 		A41117D31D548B2C00163D0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */; };
+		A41117DD1D548D0500163D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41117DC1D548D0500163D0C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54FE84E8457ED4B1FDB4CA6D /* Pods-Chatov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatov.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatov/Pods-Chatov.debug.xcconfig"; sourceTree = "<group>"; };
 		A41117C51D548B2B00163D0C /* Chatov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41117C81D548B2C00163D0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A41117CA1D548B2C00163D0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,9 @@
 		A41117CF1D548B2C00163D0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41117D21D548B2C00163D0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A41117D41D548B2C00163D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A41117DC1D548D0500163D0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A6D8FC9B7F6513CEF0654347 /* Pods_Chatov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA8D929A7C185902A7473EBC /* Pods-Chatov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatov.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatov/Pods-Chatov.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48371E540100907CF8F9EB75 /* Pods_Chatov.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4762F97E5B42956623F3E85E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				54FE84E8457ED4B1FDB4CA6D /* Pods-Chatov.debug.xcconfig */,
+				FA8D929A7C185902A7473EBC /* Pods-Chatov.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		62607DBD0D1874865B7909BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6D8FC9B7F6513CEF0654347 /* Pods_Chatov.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A41117BC1D548B2B00163D0C = {
 			isa = PBXGroup;
 			children = (
 				A41117C71D548B2C00163D0C /* Chatov */,
 				A41117C61D548B2B00163D0C /* Products */,
+				4762F97E5B42956623F3E85E /* Pods */,
+				62607DBD0D1874865B7909BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +86,7 @@
 				A41117CF1D548B2C00163D0C /* Assets.xcassets */,
 				A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */,
 				A41117D41D548B2C00163D0C /* Info.plist */,
+				A41117DC1D548D0500163D0C /* GoogleService-Info.plist */,
 			);
 			path = Chatov;
 			sourceTree = "<group>";
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A41117D71D548B2C00163D0C /* Build configuration list for PBXNativeTarget "Chatov" */;
 			buildPhases = (
+				01230C0FF924BDAC042944B4 /* [CP] Check Pods Manifest.lock */,
 				A41117C11D548B2B00163D0C /* Sources */,
 				A41117C21D548B2B00163D0C /* Frameworks */,
 				A41117C31D548B2B00163D0C /* Resources */,
+				ED1D3AA34443B271A197B7B0 /* [CP] Embed Pods Frameworks */,
+				C521971929184FBD1BD3CB2D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,10 +155,59 @@
 				A41117D31D548B2C00163D0C /* LaunchScreen.storyboard in Resources */,
 				A41117D01D548B2C00163D0C /* Assets.xcassets in Resources */,
 				A41117CE1D548B2C00163D0C /* Main.storyboard in Resources */,
+				A41117DD1D548D0500163D0C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01230C0FF924BDAC042944B4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C521971929184FBD1BD3CB2D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chatov/Pods-Chatov-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED1D3AA34443B271A197B7B0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chatov/Pods-Chatov-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A41117C11D548B2B00163D0C /* Sources */ = {
@@ -247,6 +326,7 @@
 		};
 		A41117D81D548B2C00163D0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54FE84E8457ED4B1FDB4CA6D /* Pods-Chatov.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Chatov/Info.plist;
@@ -258,6 +338,7 @@
 		};
 		A41117D91D548B2C00163D0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA8D929A7C185902A7473EBC /* Pods-Chatov.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Chatov/Info.plist;
@@ -286,6 +367,7 @@
 				A41117D91D548B2C00163D0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
