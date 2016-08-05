@@ -20,7 +20,7 @@
 		54FE84E8457ED4B1FDB4CA6D /* Pods-Chatov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatov.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatov/Pods-Chatov.debug.xcconfig"; sourceTree = "<group>"; };
 		A41117C51D548B2B00163D0C /* Chatov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41117C81D548B2C00163D0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A41117CA1D548B2C00163D0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A41117CA1D548B2C00163D0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Views/ViewController.swift; sourceTree = "<group>"; };
 		A41117CD1D548B2C00163D0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A41117CF1D548B2C00163D0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41117D21D548B2C00163D0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,15 +80,23 @@
 		A41117C71D548B2C00163D0C /* Chatov */ = {
 			isa = PBXGroup;
 			children = (
+				A41117DE1D54A93300163D0C /* Views */,
 				A41117C81D548B2C00163D0C /* AppDelegate.swift */,
-				A41117CA1D548B2C00163D0C /* ViewController.swift */,
-				A41117CC1D548B2C00163D0C /* Main.storyboard */,
 				A41117CF1D548B2C00163D0C /* Assets.xcassets */,
-				A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */,
 				A41117D41D548B2C00163D0C /* Info.plist */,
 				A41117DC1D548D0500163D0C /* GoogleService-Info.plist */,
 			);
 			path = Chatov;
+			sourceTree = "<group>";
+		};
+		A41117DE1D54A93300163D0C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A41117CA1D548B2C00163D0C /* ViewController.swift */,
+				A41117CC1D548B2C00163D0C /* Main.storyboard */,
+				A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +236,7 @@
 				A41117CD1D548B2C00163D0C /* Base */,
 			);
 			name = Main.storyboard;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */ = {
@@ -236,6 +245,7 @@
 				A41117D21D548B2C00163D0C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
