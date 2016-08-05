@@ -9,20 +9,51 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NextGrowingTextView
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
+    @IBOutlet weak var inputContainerViewBottom : NSLayoutConstraint!
+    @IBOutlet weak var inputContainerView : UIView!
+    @IBOutlet weak var inputTextView : NextGrowingTextView!
     var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupInputView()
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     func setupTableView() {
+        tableView.contentInset.bottom = inputContainerView.frame.size.height
+        tableView.scrollIndicatorInsets.bottom = inputContainerView.frame.size.height
 
         let messages = Observable.just([
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
+            "hey",
+            "what up?",
             "hey",
             "what up?"
         ])
@@ -31,6 +62,42 @@ class ViewController: UIViewController {
             cell.textLabel?.text = message
         }
         .addDisposableTo(disposeBag)
+    }
+
+    func setupInputView() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+
+        inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        inputTextView.placeholderAttributedText = NSAttributedString(string: "Type a message...",
+                                                                     attributes: [NSFontAttributeName: inputTextView.font!,
+                                                                        NSForegroundColorAttributeName: UIColor.grayColor()])
+    }
+
+    func keyboardWillHide(sender: NSNotification) {
+        if let userInfo = sender.userInfo {
+            if let _ = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size.height {
+                self.inputContainerViewBottom.constant = 0
+                self.tableView.contentInset.bottom = self.inputContainerView.frame.size.height
+                self.tableView.scrollIndicatorInsets.bottom = self.inputContainerView.frame.size.height
+                UIView.animateWithDuration(0.25) {
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
+    func keyboardWillShow(sender: NSNotification) {
+        if let userInfo = sender.userInfo {
+            if let keyboardHeight = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size.height {
+                self.inputContainerViewBottom.constant = keyboardHeight
+                self.tableView.contentInset.bottom = keyboardHeight + self.inputContainerView.frame.size.height
+                self.tableView.scrollIndicatorInsets.bottom = keyboardHeight + self.inputContainerView.frame.size.height
+                UIView.animateWithDuration(0.25) {
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
     }
 }
 

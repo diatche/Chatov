@@ -40,7 +40,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkE-0X-xvc" userLabel="Input View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkE-0X-xvc" userLabel="Input Container View">
                                 <rect key="frame" x="0.0" y="564" width="600" height="36"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amf-rm-8E8">
@@ -78,6 +78,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="inputContainerView" destination="vkE-0X-xvc" id="wB6-gp-Qu0"/>
+                        <outlet property="inputContainerViewBottom" destination="9ig-QZ-Tc3" id="waN-Is-1Yf"/>
+                        <outlet property="inputTextView" destination="guI-V7-BAx" id="Pu2-fS-g8x"/>
                         <outlet property="tableView" destination="npX-08-mgq" id="UTP-Ff-hdu"/>
                     </connections>
                 </viewController>
