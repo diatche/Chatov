@@ -33,31 +33,7 @@ class ViewController: UIViewController {
         tableView.contentInset.bottom = inputContainerView.frame.size.height
         tableView.scrollIndicatorInsets.bottom = inputContainerView.frame.size.height
 
-//        let messages = Observable.just([
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?",
-//            "hey",
-//            "what up?"
-//        ])
-        let messages = Manager.sharedInstance.messageStream.asObservable()
+        let messages = Manager.sharedInstance.messages.asObservable()
 
         messages.bindTo(tableView.rx_itemsWithCellIdentifier("Cell", cellType: MessageTableViewCell.self)) { (row, message, cell) in
             cell.textLabel?.text = message.text
@@ -71,15 +47,9 @@ class ViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
         inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        inputTextView.placeholderAttributedText = NSAttributedString(string: "Type a message...",
+        inputTextView.placeholderAttributedText = NSAttributedString(string: "Ваше сообщение...",
                                                                      attributes: [NSFontAttributeName: inputTextView.font!,
-                                                                        NSForegroundColorAttributeName: UIColor.grayColor()])
-
-        inputTextView.delegates.textViewShouldEndEditing = { textView in
-            Presenter.sharedInstance.sendTextMessage(textView.text)
-            textView.text = ""
-            return true
-        }
+                                                                        NSForegroundColorAttributeName: UIColor.lightGrayColor()])
     }
 
     func keyboardWillHide(sender: NSNotification) {
@@ -94,6 +64,7 @@ class ViewController: UIViewController {
             }
         }
     }
+
     func keyboardWillShow(sender: NSNotification) {
         if let userInfo = sender.userInfo {
             if let keyboardHeight = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size.height {
@@ -105,6 +76,11 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+
+    @IBAction func sendMessageAction() {
+        Presenter.sharedInstance.sendTextMessage(inputTextView.text)
+        inputTextView.text = ""
     }
 }
 

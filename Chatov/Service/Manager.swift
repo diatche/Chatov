@@ -18,7 +18,7 @@ class Manager {
 
     var databaseReference: FIRDatabaseReference!
     var messageHandle: FIRDatabaseHandle!
-    var messageStream = PublishSubject<[Message]>()
+    var messages = Variable<[Message]>([])
 
     init() {
         configureDatabase()
@@ -32,7 +32,7 @@ class Manager {
         databaseReference = FIRDatabase.database().reference()
 
         messageHandle = databaseReference.child(Manager.messagesKey).observeEventType(.ChildAdded, withBlock: { [unowned self] snapshot in
-            self.messageStream.on(.Next(Manager.messagesFromSnapshot(snapshot)))
+            self.messages.value.append(Manager.messageFromSnapshot(snapshot))
         })
     }
 
@@ -40,7 +40,7 @@ class Manager {
         databaseReference.child(Manager.messagesKey).childByAutoId().setValue(message.toJSON())
     }
 
-    private static func messagesFromSnapshot(snapshot: FIRDataSnapshot) -> [Message] {
-        return Mapper<Message>().mapArray(snapshot.value)!
+    private static func messageFromSnapshot(snapshot: FIRDataSnapshot) -> Message {
+        return Mapper<Message>().map(snapshot.value)!
     }
 }

@@ -51,16 +51,28 @@
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="36" translatesAutoresizingMaskIntoConstraints="NO" id="guI-V7-BAx" customClass="NextGrowingTextView" customModule="NextGrowingTextView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="542" height="36"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJZ-13-g2u">
+                                        <rect key="frame" x="550" y="3" width="42" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Отпр.">
+                                            <color key="titleColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendMessageAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="kMg-HH-mWF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="PJZ-13-g2u" firstAttribute="centerY" secondItem="vkE-0X-xvc" secondAttribute="centerY" id="5eI-M0-0PV"/>
                                     <constraint firstItem="guI-V7-BAx" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" id="Dsi-x4-dYp"/>
                                     <constraint firstAttribute="trailing" secondItem="amf-rm-8E8" secondAttribute="trailing" id="HM6-Le-eP5"/>
                                     <constraint firstItem="amf-rm-8E8" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" id="Pli-5F-d7S"/>
                                     <constraint firstItem="amf-rm-8E8" firstAttribute="top" secondItem="vkE-0X-xvc" secondAttribute="top" id="Rrp-bi-ZpH"/>
-                                    <constraint firstAttribute="trailing" secondItem="guI-V7-BAx" secondAttribute="trailing" id="Zmq-jW-SWb"/>
+                                    <constraint firstAttribute="trailing" secondItem="PJZ-13-g2u" secondAttribute="trailing" constant="8" id="TAg-Q3-hSN"/>
+                                    <constraint firstItem="PJZ-13-g2u" firstAttribute="leading" secondItem="guI-V7-BAx" secondAttribute="trailing" constant="8" id="aeF-bT-HIp"/>
                                     <constraint firstItem="guI-V7-BAx" firstAttribute="top" secondItem="vkE-0X-xvc" secondAttribute="top" id="dAs-Z8-e7T"/>
                                     <constraint firstAttribute="bottom" secondItem="guI-V7-BAx" secondAttribute="bottom" id="fS8-h1-IXu"/>
                                 </constraints>
