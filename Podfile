@@ -10,6 +10,7 @@ target 'Chatov' do
   pod 'Firebase/Database'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'ObjectMapper'
   pod 'NextGrowingTextView'
 
 end
