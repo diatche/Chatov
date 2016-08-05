@@ -17,6 +17,7 @@
 		A41117E01D54AF5E00163D0C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117DF1D54AF5E00163D0C /* MessageTableViewCell.swift */; };
 		A41117E51D54B69C00163D0C /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E41D54B69C00163D0C /* Manager.swift */; };
 		A41117E71D54B85F00163D0C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E61D54B85F00163D0C /* Message.swift */; };
+		A41117E91D54C02E00163D0C /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E81D54C02E00163D0C /* Presenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A41117DF1D54AF5E00163D0C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTableViewCell.swift; path = Views/MessageTableViewCell.swift; sourceTree = "<group>"; };
 		A41117E41D54B69C00163D0C /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Service/Manager.swift; sourceTree = "<group>"; };
 		A41117E61D54B85F00163D0C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
+		A41117E81D54C02E00163D0C /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Presenter.swift; path = ViewModels/Presenter.swift; sourceTree = "<group>"; };
 		A6D8FC9B7F6513CEF0654347 /* Pods_Chatov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8D929A7C185902A7473EBC /* Pods-Chatov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatov.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatov/Pods-Chatov.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +114,7 @@
 		A41117E11D54B62300163D0C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A41117E81D54C02E00163D0C /* Presenter.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A41117E91D54C02E00163D0C /* Presenter.swift in Sources */,
 				A41117CB1D548B2C00163D0C /* ViewController.swift in Sources */,
 				A41117C91D548B2C00163D0C /* AppDelegate.swift in Sources */,
 				A41117E71D54B85F00163D0C /* Message.swift in Sources */,

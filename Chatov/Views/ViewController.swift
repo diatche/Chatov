@@ -33,33 +33,34 @@ class ViewController: UIViewController {
         tableView.contentInset.bottom = inputContainerView.frame.size.height
         tableView.scrollIndicatorInsets.bottom = inputContainerView.frame.size.height
 
-        let messages = Observable.just([
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?",
-            "hey",
-            "what up?"
-        ])
+//        let messages = Observable.just([
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?",
+//            "hey",
+//            "what up?"
+//        ])
+        let messages = Manager.sharedInstance.messageStream.asObservable()
 
         messages.bindTo(tableView.rx_itemsWithCellIdentifier("Cell", cellType: MessageTableViewCell.self)) { (row, message, cell) in
-            cell.textLabel?.text = message
+            cell.textLabel?.text = message.text
         }
         .addDisposableTo(disposeBag)
     }
@@ -73,6 +74,12 @@ class ViewController: UIViewController {
         inputTextView.placeholderAttributedText = NSAttributedString(string: "Type a message...",
                                                                      attributes: [NSFontAttributeName: inputTextView.font!,
                                                                         NSForegroundColorAttributeName: UIColor.grayColor()])
+
+        inputTextView.delegates.textViewShouldEndEditing = { textView in
+            Presenter.sharedInstance.sendTextMessage(textView.text)
+            textView.text = ""
+            return true
+        }
     }
 
     func keyboardWillHide(sender: NSNotification) {

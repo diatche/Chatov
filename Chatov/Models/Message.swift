@@ -7,7 +7,15 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class Message {
+class Message : Mappable {
     var text = ""
+
+    init() {}
+    required init?(_ map: Map) {}
+
+    func mapping(map: Map) {
+        text <- map["text"]
+    }
 }
