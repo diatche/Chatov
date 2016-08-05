@@ -18,33 +18,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="npX-08-mgq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="npX-08-mgq">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="CcJ-d4-BiR" customClass="MessageTableViewCell" customModule="Chatov" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="CcJ-d4-BiR" customClass="MessageTableViewCell" customModule="Chatov" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CcJ-d4-BiR" id="YSj-ex-Moz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble_tail" translatesAutoresizingMaskIntoConstraints="NO" id="OpP-un-U0Z">
+                                                    <rect key="frame" x="570" y="30" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="ZNG-jM-Qjw"/>
+                                                        <constraint firstAttribute="height" constant="22" id="b2e-3J-4DO"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble" translatesAutoresizingMaskIntoConstraints="NO" id="FN3-GU-nl9">
+                                                    <rect key="frame" x="322" y="8" width="264" height="44"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQA-h5-8Xw">
-                                                    <rect key="frame" x="11" y="11" width="578" height="21"/>
+                                                    <rect key="frame" x="334" y="20" width="240" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" priority="900" constant="240" id="m7v-hJ-qGS"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="leading" secondItem="YSj-ex-Moz" secondAttribute="leadingMargin" constant="3" id="Ikd-mj-W3K"/>
-                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="top" secondItem="YSj-ex-Moz" secondAttribute="topMargin" constant="3" id="S37-jC-2rC"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="KQA-h5-8Xw" secondAttribute="trailing" constant="3" id="iTB-uS-APo"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="KQA-h5-8Xw" secondAttribute="bottom" constant="4" id="u5c-wI-IW2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="OpP-un-U0Z" secondAttribute="trailing" constant="-6" id="0zg-pu-a5K"/>
+                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="top" secondItem="FN3-GU-nl9" secondAttribute="top" constant="12" id="5yX-KJ-K83"/>
+                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="top" secondItem="YSj-ex-Moz" secondAttribute="topMargin" constant="12" id="8wA-cr-Q1k"/>
+                                                <constraint firstItem="OpP-un-U0Z" firstAttribute="bottom" secondItem="FN3-GU-nl9" secondAttribute="bottom" id="9kP-Xf-Pir"/>
+                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="trailing" secondItem="FN3-GU-nl9" secondAttribute="trailing" constant="-12" id="BYV-Au-AFe"/>
+                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="leading" secondItem="FN3-GU-nl9" secondAttribute="leading" constant="12" id="EE6-Vv-kFG"/>
+                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YSj-ex-Moz" secondAttribute="leadingMargin" constant="3" id="Ikd-mj-W3K"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KQA-h5-8Xw" secondAttribute="trailing" constant="18" id="VIk-Oc-IbX"/>
+                                                <constraint firstItem="FN3-GU-nl9" firstAttribute="bottom" secondItem="KQA-h5-8Xw" secondAttribute="bottom" constant="12" id="e7Q-mh-ynb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KQA-h5-8Xw" secondAttribute="bottom" constant="12" id="oas-tl-kax"/>
+                                                <constraint firstItem="OpP-un-U0Z" firstAttribute="trailing" secondItem="FN3-GU-nl9" secondAttribute="trailing" constant="6" id="zVE-bl-oUI"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="0zg-pu-a5K"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="messageTextLabel" destination="KQA-h5-8Xw" id="Sa7-RR-jEf"/>
+                                            <outlet property="bubbleTailImageView" destination="OpP-un-U0Z" id="jPN-dU-CBM"/>
+                                            <outlet property="messageTextLabel" destination="KQA-h5-8Xw" id="DgP-Cu-3BM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -110,4 +136,8 @@
             <point key="canvasLocation" x="385" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bubble" width="45" height="45"/>
+        <image name="bubble_tail" width="22" height="21"/>
+    </resources>
 </document>

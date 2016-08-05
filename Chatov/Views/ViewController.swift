@@ -32,15 +32,18 @@ class ViewController: UIViewController {
     func setupTableView() {
         tableView.contentInset.bottom = inputContainerView.frame.size.height
         tableView.scrollIndicatorInsets.bottom = inputContainerView.frame.size.height
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
 
         // Bind cells to messages
         let messages = Manager.sharedInstance.messages.asObservable()
         messages.bindTo(tableView.rx_itemsWithCellIdentifier("Cell", cellType: MessageTableViewCell.self)) { (row, message, cell) in
-                cell.messageTextLabel.text = message.text
-            }
-            .addDisposableTo(disposeBag)
+            cell.messageTextLabel.text = message.text
+
+            let numberOfRows = self.tableView.numberOfRowsInSection(0)
+            cell.isShowingBubbleTail = (numberOfRows == 0 || row == numberOfRows - 1)
+        }
+        .addDisposableTo(disposeBag)
 
         // Scroll when new messages arrive
         messages
