@@ -21,12 +21,13 @@ class ViewController: UIViewController {
     }
 
     func setupTableView() {
+
         let messages = Observable.just([
             "hey",
             "what up?"
         ])
 
-        messages.bindTo(tableView.rx_itemsWithCellIdentifier("Cell", cellType: UITableViewCell.self)) { (row, message, cell) in
+        messages.bindTo(tableView.rx_itemsWithCellIdentifier("Cell", cellType: MessageTableViewCell.self)) { (row, message, cell) in
             cell.textLabel?.text = message
         }
         .addDisposableTo(disposeBag)
