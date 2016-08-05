@@ -32,13 +32,23 @@ class ViewController: UIViewController {
     func setupTableView() {
         tableView.contentInset.bottom = inputContainerView.frame.size.height
         tableView.scrollIndicatorInsets.bottom = inputContainerView.frame.size.height
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
 
+        // Bind cells to messages
         let messages = Manager.sharedInstance.messages.asObservable()
-
         messages.bindTo(tableView.rx_itemsWithCellIdentifier("Cell", cellType: MessageTableViewCell.self)) { (row, message, cell) in
-            cell.textLabel?.text = message.text
-        }
-        .addDisposableTo(disposeBag)
+                cell.messageTextLabel.text = message.text
+            }
+            .addDisposableTo(disposeBag)
+
+        // Scroll when new messages arrive
+        messages
+            .throttle(0.2, scheduler: MainScheduler.instance)
+            .subscribeNext { _ in
+                self.scrollToEndIfNeeded()
+            }
+            .addDisposableTo(disposeBag)
     }
 
     func setupInputView() {
@@ -78,9 +88,26 @@ class ViewController: UIViewController {
         }
     }
 
+    func scrollToEndIfNeeded() {
+        let numberOfMessages = tableView.numberOfRowsInSection(0)
+        guard let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows where numberOfMessages > 1
+            else { return }
+
+        if indexPathsForVisibleRows.contains(NSIndexPath(forRow: numberOfMessages - 2, inSection:0)) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfMessages - 1, inSection:0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        }
+        else if indexPathsForVisibleRows.contains(NSIndexPath(forRow: 0, inSection:0)) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfMessages - 1, inSection:0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+        }
+    }
+
     @IBAction func sendMessageAction() {
         Presenter.sharedInstance.sendTextMessage(inputTextView.text)
         inputTextView.text = ""
+    }
+
+    static func previousIndexPathInSection(indexPath: NSIndexPath) -> NSIndexPath {
+        return NSIndexPath(forRow: max(indexPath.row - 1 as Int, 0), inSection: indexPath.section)
     }
 }
 

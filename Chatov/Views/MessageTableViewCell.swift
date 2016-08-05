@@ -10,6 +10,8 @@ import UIKit
 
 class MessageTableViewCell : UITableViewCell {
 
+    @IBOutlet weak var messageTextLabel : UILabel!
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()

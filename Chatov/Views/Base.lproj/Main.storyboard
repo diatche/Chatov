@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,22 +22,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="0d9-eH-PlI" style="IBUITableViewCellStyleDefault" id="CcJ-d4-BiR" customClass="MessageTableViewCell" customModule="Chatov" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="CcJ-d4-BiR" customClass="MessageTableViewCell" customModule="Chatov" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CcJ-d4-BiR" id="YSj-ex-Moz">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0d9-eH-PlI">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQA-h5-8Xw">
+                                                    <rect key="frame" x="11" y="11" width="578" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="leading" secondItem="YSj-ex-Moz" secondAttribute="leadingMargin" constant="3" id="Ikd-mj-W3K"/>
+                                                <constraint firstItem="KQA-h5-8Xw" firstAttribute="top" secondItem="YSj-ex-Moz" secondAttribute="topMargin" constant="3" id="S37-jC-2rC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KQA-h5-8Xw" secondAttribute="trailing" constant="3" id="iTB-uS-APo"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KQA-h5-8Xw" secondAttribute="bottom" constant="4" id="u5c-wI-IW2"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageTextLabel" destination="KQA-h5-8Xw" id="Sa7-RR-jEf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
