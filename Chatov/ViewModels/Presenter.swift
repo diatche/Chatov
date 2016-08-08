@@ -34,4 +34,19 @@ class Presenter {
         message.coordinate = location.coordinate
         Manager.sharedInstance.sendMessage(message)
     }
+
+    func sendImage(image: UIImage) {
+        _ = Manager.sharedInstance.uploadImage(image).subscribeNext { imageUrl in
+            let message = Message()
+            message.imageUrl = imageUrl
+            Manager.sharedInstance.sendMessage(message)
+        }
+    }
+
+    func receiveImageInMessage(message: Message) -> Observable<UIImage> {
+        return message.image
+            .asObservable()
+            .filter { $0 != nil }
+            .map { $0! }
+    }
 }

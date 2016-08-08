@@ -50,16 +50,15 @@ class MessageTableViewCell : UITableViewCell {
         isShowingBubbleTail = false
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func layoutMaskWithContentFrame(contentFrame: CGRect) {
         maskView?.frame = contentView.frame
-    }
 
-    func layoutBubbleTailImageView() {
-        var rect = bubbleImageView.frame
-        rect.origin.x = rect.maxX - 16
-        rect.origin.y = rect.maxY - 21
-        rect.size = bubbleTailImageView.image?.size ?? CGSizeZero
-        bubbleTailImageView.frame = rect
+        bubbleImageView.frame = contentFrame
+
+        var tailFrame = contentFrame
+        tailFrame.origin.x = tailFrame.maxX - 16
+        tailFrame.origin.y = tailFrame.maxY - 21
+        tailFrame.size = bubbleTailImageView.image?.size ?? CGSizeZero
+        bubbleTailImageView.frame = tailFrame
     }
 }

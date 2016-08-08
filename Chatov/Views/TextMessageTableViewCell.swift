@@ -20,9 +20,6 @@ class TextMessageTableViewCell : MessageTableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        bubbleImageView.frame = UIEdgeInsetsInsetRect(messageTextLabel.frame, UIEdgeInsets(top: -8, left: -12, bottom: -8, right: -12))
-
-        layoutBubbleTailImageView()
+        layoutMaskWithContentFrame(UIEdgeInsetsInsetRect(messageTextLabel.frame, UIEdgeInsets(top: -8, left: -12, bottom: -8, right: -12)))
     }
 }

@@ -24,9 +24,6 @@ class MapMessageTableViewCell : MessageTableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        bubbleImageView.frame = UIEdgeInsetsInsetRect(mapView.frame, UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8))
-
-        layoutBubbleTailImageView()
+        layoutMaskWithContentFrame(UIEdgeInsetsInsetRect(mapView.frame, UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
     }
 }

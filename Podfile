@@ -8,6 +8,7 @@ target 'Chatov' do
   # Pods for Chatov
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'ObjectMapper'

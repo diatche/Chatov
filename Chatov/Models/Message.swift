@@ -13,8 +13,11 @@ import MapKit
 
 class Message : NSObject, Mappable, MKAnnotation {
     var text = ""
-    @objc var coordinate = kCLLocationCoordinate2DInvalid
 
+    var imageUrl: String?
+    var image = Variable<UIImage?>(nil)
+
+    @objc var coordinate = kCLLocationCoordinate2DInvalid
     var coordinateIsValid : Bool {
         return CLLocationCoordinate2DIsValid(coordinate)
     }
@@ -24,6 +27,7 @@ class Message : NSObject, Mappable, MKAnnotation {
 
     func mapping(map: Map) {
         text <- map["text"]
+        imageUrl <- map["imageUrl"]
         coordinate.latitude <- map["latitude"]
         coordinate.longitude <- map["longitude"]
     }

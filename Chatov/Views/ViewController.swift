@@ -22,8 +22,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var cameraButton : UIButton!
     @IBOutlet weak var imagesButton : UIButton!
     @IBOutlet weak var geoButton : UIButton!
+    @IBOutlet weak var imagePickerContainerView : UIView!
+    @IBOutlet weak var imagePickerContainerHeight : NSLayoutConstraint!
     var disposeBag = DisposeBag()
     var lastKeyboardHeight : CGFloat = 0
+    var isShowingImagePicker = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +54,15 @@ class ViewController: UIViewController {
                 mapCell.annotation = message
 
                 cell = mapCell
+            }
+            else if message.imageUrl != nil {
+                let imageCell = tableView.dequeueReusableCellWithIdentifier("ImageCell") as! ImageMessageTableViewCell
+                imageCell.imageView?.image = nil
+                _ = Presenter.sharedInstance.receiveImageInMessage(message).subscribeNext{ image in
+                    imageCell.imageView?.image = image
+                }
+
+                cell = imageCell
             }
             else {
                 let textCell = tableView.dequeueReusableCellWithIdentifier("TextCell") as! TextMessageTableViewCell
@@ -84,6 +96,10 @@ class ViewController: UIViewController {
                                                                      attributes: [NSFontAttributeName: inputTextView.font!,
                                                                         NSForegroundColorAttributeName: UIColor.lightGrayColor()])
 
+        inputTextView.delegates.textViewDidBeginEditing = { [unowned self] textView in
+            self.editMessage()
+        }
+
         sendButton.enabled = false
         inputTextView.delegates.textViewDidChange = { [unowned self] textView in
             self.sendButton.enabled = (textView.text.characters.count != 0)
@@ -97,6 +113,16 @@ class ViewController: UIViewController {
             Presenter.sharedInstance.sendTextMessage(self.inputTextView.text)
             self.inputTextView.text = ""
             self.inputTextView.becomeFirstResponder()
+        }
+        .addDisposableTo(disposeBag)
+
+        cameraButton.rx_tap.subscribeNext {
+            self.showImagePicker()
+        }
+        .addDisposableTo(disposeBag)
+
+        imagesButton.rx_tap.subscribeNext {
+            self.showImagePicker()
         }
         .addDisposableTo(disposeBag)
 
@@ -138,6 +164,30 @@ class ViewController: UIViewController {
 
     func updateWithLastKeyboardHeight() {
         updateWithKeyboardHeight(lastKeyboardHeight)
+    }
+
+    func editMessage() {
+        hideImagePicker()
+        updateWithLastKeyboardHeight()
+    }
+
+    func showImagePicker() {
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.sourceType = .Camera
+//        presentViewController(imagePicker, animated: true, completion: nil)
+        isShowingImagePicker = true
+        imagePickerContainerView.hidden = false
+        imagePickerContainerHeight.constant = 200
+        inputTextView.resignFirstResponder()
+        updateWithLastKeyboardHeight()
+    }
+
+    func hideImagePicker() {
+        isShowingImagePicker = false
+        imagePickerContainerView.hidden = true
+        imagePickerContainerHeight.constant = 0
+        inputTextView.resignFirstResponder()
+        updateWithLastKeyboardHeight()
     }
 
     func scrollToEndIfNeeded() {
