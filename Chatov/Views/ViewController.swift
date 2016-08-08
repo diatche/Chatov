@@ -17,7 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var inputContainerViewBottom : NSLayoutConstraint!
     @IBOutlet weak var inputContainerView : UIView!
     @IBOutlet weak var inputTextView : NextGrowingTextView!
+    @IBOutlet weak var sendButton : UIButton!
+    @IBOutlet weak var cameraButton : UIButton!
+    @IBOutlet weak var imagesButton : UIButton!
+    @IBOutlet weak var geoButton : UIButton!
     var disposeBag = DisposeBag()
+    var lastKeyboardHeight : CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,21 +64,32 @@ class ViewController: UIViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
-        inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        inputTextView.textContainerInset = UIEdgeInsets(top: 14, left: 6, bottom: 14, right: 8)
         inputTextView.placeholderAttributedText = NSAttributedString(string: "Ваше сообщение...",
                                                                      attributes: [NSFontAttributeName: inputTextView.font!,
                                                                         NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+
+        sendButton.enabled = false
+        inputTextView.delegates.textViewDidChange = { [unowned self] textView in
+            self.sendButton.enabled = (textView.text.characters.count != 0)
+        }
+
+        inputTextView.delegates.didChangeHeight = { [unowned self] textView in
+            self.updateWithLastKeyboardHeight()
+        }
+
+        sendButton.rx_tap.subscribeNext { [unowned self] _ in
+            Presenter.sharedInstance.sendTextMessage(self.inputTextView.text)
+            self.inputTextView.text = ""
+            self.inputTextView.becomeFirstResponder()
+        }
+        .addDisposableTo(disposeBag)
     }
 
     func keyboardWillHide(sender: NSNotification) {
         if let userInfo = sender.userInfo {
             if let _ = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size.height {
-                self.inputContainerViewBottom.constant = 0
-                self.tableView.contentInset.bottom = self.inputContainerView.frame.size.height
-                self.tableView.scrollIndicatorInsets.bottom = self.inputContainerView.frame.size.height
-                UIView.animateWithDuration(0.25) {
-                    self.view.layoutIfNeeded()
-                }
+                updateWithKeyboardHeight(0)
             }
         }
     }
@@ -81,14 +97,25 @@ class ViewController: UIViewController {
     func keyboardWillShow(sender: NSNotification) {
         if let userInfo = sender.userInfo {
             if let keyboardHeight = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size.height {
-                self.inputContainerViewBottom.constant = keyboardHeight
-                self.tableView.contentInset.bottom = keyboardHeight + self.inputContainerView.frame.size.height
-                self.tableView.scrollIndicatorInsets.bottom = keyboardHeight + self.inputContainerView.frame.size.height
-                UIView.animateWithDuration(0.25) {
-                    self.view.layoutIfNeeded()
-                }
+                updateWithKeyboardHeight(keyboardHeight)
             }
         }
+    }
+
+    func updateWithKeyboardHeight(keyboardHeight: CGFloat) {
+        self.inputContainerViewBottom.constant = keyboardHeight
+        self.tableView.contentInset.bottom = keyboardHeight + self.inputContainerView.frame.size.height
+        self.tableView.scrollIndicatorInsets.bottom = keyboardHeight + self.inputContainerView.frame.size.height
+        UIView.animateWithDuration(0.25) {
+            self.view.layoutIfNeeded()
+        }
+        scrollToEndIfNeeded()
+
+        lastKeyboardHeight = keyboardHeight
+    }
+
+    func updateWithLastKeyboardHeight() {
+        updateWithKeyboardHeight(lastKeyboardHeight)
     }
 
     func scrollToEndIfNeeded() {
@@ -102,11 +129,6 @@ class ViewController: UIViewController {
         else if indexPathsForVisibleRows.contains(NSIndexPath(forRow: 0, inSection:0)) {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfMessages - 1, inSection:0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
         }
-    }
-
-    @IBAction func sendMessageAction() {
-        Presenter.sharedInstance.sendTextMessage(inputTextView.text)
-        inputTextView.text = ""
     }
 
     static func previousIndexPathInSection(indexPath: NSIndexPath) -> NSIndexPath {
