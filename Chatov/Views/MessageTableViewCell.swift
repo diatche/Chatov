@@ -10,8 +10,8 @@ import UIKit
 
 class MessageTableViewCell : UITableViewCell {
 
-    @IBOutlet weak var messageTextLabel : UILabel!
-    @IBOutlet weak var bubbleTailImageView : UIImageView!
+    let bubbleImageView = UIImageView()
+    let bubbleTailImageView = UIImageView()
 
     var isShowingBubbleTail : Bool = false {
         didSet {
@@ -34,8 +34,32 @@ class MessageTableViewCell : UITableViewCell {
     }
 
     func setup() {
+        bubbleImageView.image = UIImage(named: "bubble")
+        bubbleTailImageView.image = UIImage(named: "bubble_tail")
+
+        bubbleImageView.translatesAutoresizingMaskIntoConstraints = false
+        bubbleTailImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        let maskView = UIView(frame: bounds)
+        maskView.addSubview(bubbleImageView)
+        maskView.addSubview(bubbleTailImageView)
+        self.maskView = maskView
+
         backgroundColor = UIColor.clearColor()
         contentView.backgroundColor = UIColor.clearColor()
         isShowingBubbleTail = false
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        maskView?.frame = contentView.frame
+    }
+
+    func layoutBubbleTailImageView() {
+        var rect = bubbleImageView.frame
+        rect.origin.x = rect.maxX - 16
+        rect.origin.y = rect.maxY - 21
+        rect.size = bubbleTailImageView.image?.size ?? CGSizeZero
+        bubbleTailImageView.frame = rect
     }
 }

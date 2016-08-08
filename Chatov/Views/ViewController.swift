@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import NextGrowingTextView
+import MapKit
 
 class ViewController: UIViewController {
 
@@ -42,11 +43,25 @@ class ViewController: UIViewController {
 
         // Bind cells to messages
         let messages = Manager.sharedInstance.messages.asObservable()
-        messages.bindTo(tableView.rx_itemsWithCellIdentifier("Cell", cellType: MessageTableViewCell.self)) { (row, message, cell) in
-            cell.messageTextLabel.text = message.text
+        messages.bindTo(tableView.rx_itemsWithCellFactory) { (tableView, row, message) in
+            let cell: MessageTableViewCell
+
+            if message.coordinateIsValid {
+                let mapCell = tableView.dequeueReusableCellWithIdentifier("MapCell") as! MapMessageTableViewCell
+                mapCell.annotation = message
+
+                cell = mapCell
+            }
+            else {
+                let textCell = tableView.dequeueReusableCellWithIdentifier("TextCell") as! TextMessageTableViewCell
+                textCell.messageTextLabel.text = message.text
+
+                cell = textCell
+            }
 
             let numberOfRows = self.tableView.numberOfRowsInSection(0)
             cell.isShowingBubbleTail = (numberOfRows == 0 || row == numberOfRows - 1)
+            return cell
         }
         .addDisposableTo(disposeBag)
 
@@ -84,6 +99,11 @@ class ViewController: UIViewController {
             self.inputTextView.becomeFirstResponder()
         }
         .addDisposableTo(disposeBag)
+
+        geoButton.rx_tap.subscribeNext {
+            Presenter.sharedInstance.sendGeoLocation()
+        }
+        .addDisposableTo(disposeBag)
     }
 
     func keyboardWillHide(sender: NSNotification) {
@@ -104,8 +124,10 @@ class ViewController: UIViewController {
 
     func updateWithKeyboardHeight(keyboardHeight: CGFloat) {
         self.inputContainerViewBottom.constant = keyboardHeight
-        self.tableView.contentInset.bottom = keyboardHeight + self.inputContainerView.frame.size.height
-        self.tableView.scrollIndicatorInsets.bottom = keyboardHeight + self.inputContainerView.frame.size.height
+
+        let inset = keyboardHeight + self.inputContainerView.frame.size.height
+        self.tableView.contentInset.bottom = inset
+        self.tableView.scrollIndicatorInsets.bottom = inset
         UIView.animateWithDuration(0.25) {
             self.view.layoutIfNeeded()
         }

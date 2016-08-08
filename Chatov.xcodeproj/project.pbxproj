@@ -18,6 +18,10 @@
 		A41117E51D54B69C00163D0C /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E41D54B69C00163D0C /* Manager.swift */; };
 		A41117E71D54B85F00163D0C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E61D54B85F00163D0C /* Message.swift */; };
 		A41117E91D54C02E00163D0C /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E81D54C02E00163D0C /* Presenter.swift */; };
+		A4BAF9DC1D5863F50063B89E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4BAF9DB1D5863F50063B89E /* MapKit.framework */; };
+		A4BAF9E01D586C370063B89E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BAF9DF1D586C370063B89E /* LocationManager.swift */; };
+		A4BAF9E21D588CA30063B89E /* MapMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BAF9E11D588CA30063B89E /* MapMessageTableViewCell.swift */; };
+		A4BAF9E41D588F260063B89E /* TextMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BAF9E31D588F260063B89E /* TextMessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		A41117E41D54B69C00163D0C /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Service/Manager.swift; sourceTree = "<group>"; };
 		A41117E61D54B85F00163D0C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
 		A41117E81D54C02E00163D0C /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Presenter.swift; path = ViewModels/Presenter.swift; sourceTree = "<group>"; };
+		A4BAF9DB1D5863F50063B89E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A4BAF9DF1D586C370063B89E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = Service/LocationManager.swift; sourceTree = "<group>"; };
+		A4BAF9E11D588CA30063B89E /* MapMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapMessageTableViewCell.swift; path = Views/MapMessageTableViewCell.swift; sourceTree = "<group>"; };
+		A4BAF9E31D588F260063B89E /* TextMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageTableViewCell.swift; path = Views/TextMessageTableViewCell.swift; sourceTree = "<group>"; };
 		A6D8FC9B7F6513CEF0654347 /* Pods_Chatov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8D929A7C185902A7473EBC /* Pods-Chatov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatov.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatov/Pods-Chatov.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BAF9DC1D5863F50063B89E /* MapKit.framework in Frameworks */,
 				48371E540100907CF8F9EB75 /* Pods_Chatov.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +71,7 @@
 		62607DBD0D1874865B7909BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4BAF9DB1D5863F50063B89E /* MapKit.framework */,
 				A6D8FC9B7F6513CEF0654347 /* Pods_Chatov.framework */,
 			);
 			name = Frameworks;
@@ -107,6 +117,8 @@
 				A41117CC1D548B2C00163D0C /* Main.storyboard */,
 				A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */,
 				A41117DF1D54AF5E00163D0C /* MessageTableViewCell.swift */,
+				A4BAF9E31D588F260063B89E /* TextMessageTableViewCell.swift */,
+				A4BAF9E11D588CA30063B89E /* MapMessageTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -131,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				A41117E41D54B69C00163D0C /* Manager.swift */,
+				A4BAF9DF1D586C370063B89E /* LocationManager.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -262,8 +275,11 @@
 				A41117E91D54C02E00163D0C /* Presenter.swift in Sources */,
 				A41117CB1D548B2C00163D0C /* ViewController.swift in Sources */,
 				A41117C91D548B2C00163D0C /* AppDelegate.swift in Sources */,
+				A4BAF9E01D586C370063B89E /* LocationManager.swift in Sources */,
+				A4BAF9E41D588F260063B89E /* TextMessageTableViewCell.swift in Sources */,
 				A41117E71D54B85F00163D0C /* Message.swift in Sources */,
 				A41117E51D54B69C00163D0C /* Manager.swift in Sources */,
+				A4BAF9E21D588CA30063B89E /* MapMessageTableViewCell.swift in Sources */,
 				A41117E01D54AF5E00163D0C /* MessageTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
