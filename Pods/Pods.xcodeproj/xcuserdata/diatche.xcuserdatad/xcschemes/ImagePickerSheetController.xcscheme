@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '69872565277407B3A566F8936F856D9E'
-               BlueprintName = 'RxSwift'
+               BlueprintIdentifier = '2AAAB9973850C35994DC04473435E1A3'
+               BlueprintName = 'ImagePickerSheetController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RxSwift.framework'>
+               BuildableName = 'ImagePickerSheetController.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
