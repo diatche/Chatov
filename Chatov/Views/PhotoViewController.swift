@@ -11,6 +11,7 @@ import Photos
 import RxSwift
 import RxCocoa
 
+/// Displays the users images in the photo library
 class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     private var collectionView: UICollectionView!
@@ -99,6 +100,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
         collectionView.registerClass(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 
+        let imageRequestOptions = PHImageRequestOptions()
+        imageRequestOptions.resizeMode = .Fast
+
         assets.asObservable().bindTo(collectionView.rx_itemsWithCellIdentifier("Cell", cellType: PhotoCollectionViewCell.self)) { (row, asset, cell) in
             let manager = PHImageManager.defaultManager()
 
@@ -109,7 +113,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             cell.tag = Int(manager.requestImageForAsset(asset,
                 targetSize: layout.itemSize,
                 contentMode: .AspectFill,
-                options: nil) { (result, _) in
+                options: imageRequestOptions) { (result, _) in
                     cell.imageView.image = result
                 })
         }
@@ -124,12 +128,6 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             })
         }
         .addDisposableTo(disposeBag)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-
     }
 
     func presentImagePickerController() {

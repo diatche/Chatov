@@ -13,7 +13,6 @@
 		A41117CE1D548B2C00163D0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41117CC1D548B2C00163D0C /* Main.storyboard */; };
 		A41117D01D548B2C00163D0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41117CF1D548B2C00163D0C /* Assets.xcassets */; };
 		A41117D31D548B2C00163D0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */; };
-		A41117DD1D548D0500163D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41117DC1D548D0500163D0C /* GoogleService-Info.plist */; };
 		A41117E01D54AF5E00163D0C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117DF1D54AF5E00163D0C /* MessageTableViewCell.swift */; };
 		A41117E51D54B69C00163D0C /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E41D54B69C00163D0C /* MessageManager.swift */; };
 		A41117E71D54B85F00163D0C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E61D54B85F00163D0C /* Message.swift */; };
@@ -21,6 +20,7 @@
 		A433E3E21D59E9FF001DF292 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433E3E11D59E9FF001DF292 /* PhotoViewController.swift */; };
 		A433E3EC1D5A129A001DF292 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A433E3EB1D5A129A001DF292 /* Photos.framework */; };
 		A433E3EE1D5A13FB001DF292 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433E3ED1D5A13FB001DF292 /* PhotoCollectionViewCell.swift */; };
+		A433E3F01D5A363B001DF292 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A433E3EF1D5A363B001DF292 /* GoogleService-Info.plist */; };
 		A467FF981D58ACA500FF1D5E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467FF971D58ACA500FF1D5E /* CameraViewController.swift */; };
 		A467FF9A1D58C12500FF1D5E /* ImageMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467FF991D58C12500FF1D5E /* ImageMessageTableViewCell.swift */; };
 		A4BAF9DC1D5863F50063B89E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4BAF9DB1D5863F50063B89E /* MapKit.framework */; };
@@ -38,7 +38,6 @@
 		A41117CF1D548B2C00163D0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41117D21D548B2C00163D0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A41117D41D548B2C00163D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A41117DC1D548D0500163D0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A41117DF1D54AF5E00163D0C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTableViewCell.swift; path = Views/MessageTableViewCell.swift; sourceTree = "<group>"; };
 		A41117E41D54B69C00163D0C /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageManager.swift; path = Service/MessageManager.swift; sourceTree = "<group>"; };
 		A41117E61D54B85F00163D0C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		A433E3E91D5A121C001DF292 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		A433E3EB1D5A129A001DF292 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		A433E3ED1D5A13FB001DF292 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = Views/PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		A433E3EF1D5A363B001DF292 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A467FF971D58ACA500FF1D5E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = Views/CameraViewController.swift; sourceTree = "<group>"; };
 		A467FF991D58C12500FF1D5E /* ImageMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageMessageTableViewCell.swift; path = Views/ImageMessageTableViewCell.swift; sourceTree = "<group>"; };
 		A4BAF9DB1D5863F50063B89E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -119,7 +119,7 @@
 				A41117C81D548B2C00163D0C /* AppDelegate.swift */,
 				A41117CF1D548B2C00163D0C /* Assets.xcassets */,
 				A41117D41D548B2C00163D0C /* Info.plist */,
-				A41117DC1D548D0500163D0C /* GoogleService-Info.plist */,
+				A433E3EF1D5A363B001DF292 /* GoogleService-Info.plist */,
 			);
 			path = Chatov;
 			sourceTree = "<group>";
@@ -229,9 +229,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A41117D31D548B2C00163D0C /* LaunchScreen.storyboard in Resources */,
+				A433E3F01D5A363B001DF292 /* GoogleService-Info.plist in Resources */,
 				A41117D01D548B2C00163D0C /* Assets.xcassets in Resources */,
 				A41117CE1D548B2C00163D0C /* Main.storyboard in Resources */,
-				A41117DD1D548D0500163D0C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

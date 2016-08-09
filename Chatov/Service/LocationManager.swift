@@ -24,6 +24,11 @@ class LocationManager {
 
     private let disposeBag = DisposeBag()
 
+    /**
+     Requests the users geo location.
+
+     - returns: the location in an observable.
+     */
     func getGeoLocation() -> Observable<CLLocation> {
         locationManager.startUpdatingLocation()
 

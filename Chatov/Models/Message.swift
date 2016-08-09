@@ -25,6 +25,11 @@ class Message : NSObject, Mappable, MKAnnotation {
     override init() {}
     required init?(_ map: Map) {}
 
+    /**
+     JSON mapping
+
+     - parameter map: map
+     */
     func mapping(map: Map) {
         text <- map["text"]
         imageUrl <- map["imageUrl"]

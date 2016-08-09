@@ -44,8 +44,10 @@ class Presenter {
     func receiveImageInMessage(message: Message) -> Observable<UIImage> {
         if message.image == nil {
             message.image = Variable<UIImage?>(nil)
-            _ = MessageManager.sharedInstance.downloadImage(message.imageUrl!).retry(3).subscribeNext { image in
-                message.image!.value = image
+            if let imageUrl = message.imageUrl {
+                _ = MessageManager.sharedInstance.downloadImage(imageUrl).retry(3).subscribeNext { image in
+                    message.image?.value = image
+                }
             }
         }
         return message.image!

@@ -12,6 +12,7 @@ import RxCocoa
 import NextGrowingTextView
 import MapKit
 
+/// Primary view controller to display all messages and child controllers.
 class MessagesViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
@@ -45,6 +46,7 @@ class MessagesViewController: UIViewController {
     }
 
     func setupTableView() {
+        tableView.contentInset.top = 20
         tableView.contentInset.bottom = inputContainerView.frame.size.height
         tableView.scrollIndicatorInsets.bottom = inputContainerView.frame.size.height
         tableView.estimatedRowHeight = 60
@@ -78,6 +80,7 @@ class MessagesViewController: UIViewController {
                 cell = textCell
             }
 
+            // Only show the bubble tail on the last message
             let numberOfRows = self.tableView.numberOfRowsInSection(0)
             cell.isShowingBubbleTail = (numberOfRows == 0 || row == numberOfRows - 1)
             return cell
@@ -89,6 +92,7 @@ class MessagesViewController: UIViewController {
             .throttle(0.2, scheduler: MainScheduler.instance)
             .delaySubscription(0.1, scheduler: MainScheduler.instance)
             .subscribeNext { _ in
+                // Delay scrolling a bit
                 CATransaction.begin()
                 CATransaction.setCompletionBlock({ () -> Void in
                     self.scrollToEndIfNeeded()
@@ -204,6 +208,7 @@ class MessagesViewController: UIViewController {
         isShowingCamera = useCamera
         isShowingImagePicker = true
 
+        // Swap constraints so that the child controller drives the height of the view
         imagePickerContainerHeight.active = false
 
         imagePickerContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[picker]|",
@@ -240,6 +245,9 @@ class MessagesViewController: UIViewController {
         isShowingImagePicker = false
     }
 
+    /**
+     Release all child view controllers
+     */
     func resetImagePicker() {
         imagePickerContainerView.subviews.forEach { $0.removeFromSuperview() }
 
@@ -256,10 +264,12 @@ class MessagesViewController: UIViewController {
             else { return }
 
         if indexPathsForVisibleRows.contains(NSIndexPath(forRow: numberOfMessages - 2, inSection:0)) {
+            // Avoid scrollToRowAtIndexPath as auto layout is used inside the cells
             let contentOffset = tableView.contentSize.height - tableView.frame.height + tableView.contentInset.bottom
             tableView.setContentOffset(CGPointMake(0, contentOffset), animated: true)
         }
         else if indexPathsForVisibleRows.contains(NSIndexPath(forRow: 0, inSection:0)) {
+            // This is typically used when all messages are loaded at the start
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfMessages - 1, inSection:0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
         }
     }
