@@ -36,15 +36,19 @@ class Presenter {
     }
 
     func sendImage(image: UIImage) {
-        _ = Manager.sharedInstance.uploadImage(image).subscribeNext { imageUrl in
-            let message = Message()
-            message.imageUrl = imageUrl
-            Manager.sharedInstance.sendMessage(message)
-        }
+        let message = Message()
+        message.image = Variable<UIImage?>(image)
+        Manager.sharedInstance.sendMessage(message)
     }
 
     func receiveImageInMessage(message: Message) -> Observable<UIImage> {
-        return message.image
+        if message.image == nil {
+            message.image = Variable<UIImage?>(nil)
+            _ = Manager.sharedInstance.downloadImage(message.imageUrl!).retry(3).subscribeNext { image in
+                message.image!.value = image
+            }
+        }
+        return message.image!
             .asObservable()
             .filter { $0 != nil }
             .map { $0! }

@@ -26,7 +26,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var imagePickerContainerHeight : NSLayoutConstraint!
     var disposeBag = DisposeBag()
     var lastKeyboardHeight : CGFloat = 0
+    var lastMessageInputHeight : CGFloat = 0
     var isShowingImagePicker = false
+    var isShowingImagePickerFullscreen = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +57,13 @@ class ViewController: UIViewController {
 
                 cell = mapCell
             }
-            else if message.imageUrl != nil {
+            else if message.image != nil || message.imageUrl != nil {
                 let imageCell = tableView.dequeueReusableCellWithIdentifier("ImageCell") as! ImageMessageTableViewCell
-                imageCell.imageView?.image = nil
-                _ = Presenter.sharedInstance.receiveImageInMessage(message).subscribeNext{ image in
-                    imageCell.imageView?.image = image
+                imageCell.messageImageView.image = nil
+                Presenter.sharedInstance.receiveImageInMessage(message).subscribeNext { image in
+                    imageCell.messageImageView.image = image
                 }
+                .addDisposableTo(imageCell.disposeBag)
 
                 cell = imageCell
             }
@@ -80,8 +83,13 @@ class ViewController: UIViewController {
         // Scroll when new messages arrive
         messages
             .throttle(0.2, scheduler: MainScheduler.instance)
+            .delaySubscription(0.1, scheduler: MainScheduler.instance)
             .subscribeNext { _ in
-                self.scrollToEndIfNeeded()
+                CATransaction.begin()
+                CATransaction.setCompletionBlock({ () -> Void in
+                    self.scrollToEndIfNeeded()
+                })
+                CATransaction.commit()
             }
             .addDisposableTo(disposeBag)
     }
@@ -105,8 +113,11 @@ class ViewController: UIViewController {
             self.sendButton.enabled = (textView.text.characters.count != 0)
         }
 
-        inputTextView.delegates.didChangeHeight = { [unowned self] textView in
-            self.updateWithLastKeyboardHeight()
+        inputTextView.delegates.didChangeHeight = { [unowned self] height in
+            if self.lastMessageInputHeight != height {
+                self.updateWithLastKeyboardHeight()
+                self.lastMessageInputHeight = height
+            }
         }
 
         sendButton.rx_tap.subscribeNext { [unowned self] _ in
@@ -130,6 +141,15 @@ class ViewController: UIViewController {
             Presenter.sharedInstance.sendGeoLocation()
         }
         .addDisposableTo(disposeBag)
+
+        if let cameraViewController = childViewControllers[0] as? CameraViewController {
+            cameraViewController.wantsFullscreen.asObservable().skip(1).subscribeNext { wantsFullscreen in
+                self.isShowingImagePickerFullscreen = wantsFullscreen
+                cameraViewController.view.setNeedsLayout()
+                self.showImagePicker()
+            }
+            .addDisposableTo(disposeBag)
+        }
     }
 
     func keyboardWillHide(sender: NSNotification) {
@@ -151,12 +171,16 @@ class ViewController: UIViewController {
     func updateWithKeyboardHeight(keyboardHeight: CGFloat) {
         self.inputContainerViewBottom.constant = keyboardHeight
 
-        let inset = keyboardHeight + self.inputContainerView.frame.size.height
-        self.tableView.contentInset.bottom = inset
-        self.tableView.scrollIndicatorInsets.bottom = inset
-        UIView.animateWithDuration(0.25) {
+        UIView.animateWithDuration(0.25, delay: 0, options: .BeginFromCurrentState, animations: {
             self.view.layoutIfNeeded()
-        }
+            let inset = keyboardHeight + self.inputContainerView.frame.size.height
+            self.tableView.contentInset.bottom = inset
+            self.tableView.scrollIndicatorInsets.bottom = inset
+        }, completion: { _ in
+            if !self.isShowingImagePicker {
+                self.imagePickerContainerView.hidden = true
+            }
+        })
         scrollToEndIfNeeded()
 
         lastKeyboardHeight = keyboardHeight
@@ -172,22 +196,16 @@ class ViewController: UIViewController {
     }
 
     func showImagePicker() {
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.sourceType = .Camera
-//        presentViewController(imagePicker, animated: true, completion: nil)
         isShowingImagePicker = true
         imagePickerContainerView.hidden = false
-        imagePickerContainerHeight.constant = 200
+        imagePickerContainerHeight.constant = (isShowingImagePickerFullscreen ? self.view.frame.size.height : 350)
         inputTextView.resignFirstResponder()
         updateWithLastKeyboardHeight()
     }
 
     func hideImagePicker() {
         isShowingImagePicker = false
-        imagePickerContainerView.hidden = true
         imagePickerContainerHeight.constant = 0
-        inputTextView.resignFirstResponder()
-        updateWithLastKeyboardHeight()
     }
 
     func scrollToEndIfNeeded() {
@@ -196,7 +214,8 @@ class ViewController: UIViewController {
             else { return }
 
         if indexPathsForVisibleRows.contains(NSIndexPath(forRow: numberOfMessages - 2, inSection:0)) {
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfMessages - 1, inSection:0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+            let contentOffset = tableView.contentSize.height - tableView.frame.height + tableView.contentInset.bottom
+            tableView.setContentOffset(CGPointMake(0, contentOffset), animated: true)
         }
         else if indexPathsForVisibleRows.contains(NSIndexPath(forRow: 0, inSection:0)) {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfMessages - 1, inSection:0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)

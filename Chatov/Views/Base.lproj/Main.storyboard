@@ -32,6 +32,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQA-h5-8Xw">
                                                     <rect key="frame" x="334" y="12" width="240" height="36"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Aoq-0D-Q9l"/>
                                                         <constraint firstAttribute="width" priority="900" constant="240" id="m7v-hJ-qGS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -82,7 +83,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="277"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eNC-Tt-T5F">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HiO-VP-1CV">
+                                                    <rect key="frame" x="445.5" y="109" width="37" height="37"/>
+                                                </activityIndicatorView>
+                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eNC-Tt-T5F">
                                                     <rect key="frame" x="344" y="8" width="248" height="240"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="248" id="iz4-K3-cAS"/>
@@ -91,6 +95,8 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="eNC-Tt-T5F" firstAttribute="centerY" secondItem="HiO-VP-1CV" secondAttribute="centerY" id="A4z-nl-LZk"/>
+                                                <constraint firstItem="eNC-Tt-T5F" firstAttribute="centerX" secondItem="HiO-VP-1CV" secondAttribute="centerX" constant="4" id="FdF-MV-Z7L"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="eNC-Tt-T5F" secondAttribute="trailing" id="Qka-dy-thb"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="eNC-Tt-T5F" secondAttribute="bottom" priority="900" id="n8L-nF-Jvt"/>
                                                 <constraint firstItem="eNC-Tt-T5F" firstAttribute="top" secondItem="D8w-d5-quf" secondAttribute="topMargin" id="pnW-eR-saH"/>
@@ -148,7 +154,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kF-sm-0Uk">
+                                    <containerView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kF-sm-0Uk">
                                         <rect key="frame" x="0.0" y="83" width="600" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="7IR-Sf-G7B"/>
@@ -213,6 +219,10 @@
         <scene sceneID="Fpq-EX-mAQ">
             <objects>
                 <viewController id="dDk-8W-MfK" customClass="CameraViewController" customModule="Chatov" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4tk-uE-FaZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="KjL-Ty-EpO"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AV3-3x-nor">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,6 +241,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D92-dS-PWb">
                                                 <rect key="frame" x="186" y="0.0" width="187" height="34"/>
                                                 <state key="normal" title="Отпр"/>
+                                                <connections>
+                                                    <action selector="captureAction" destination="dDk-8W-MfK" eventType="touchUpInside" id="b2r-cx-I5G"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr3-za-BZP">
                                                 <rect key="frame" x="373" y="5" width="186.5" height="24"/>
@@ -259,7 +272,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="captureButton" destination="D92-dS-PWb" id="SFV-cA-2va"/>
+                        <outlet property="buttonContainerView" destination="myp-mP-OOc" id="4Gv-kO-snB"/>
+                        <outlet property="captureButton" destination="D92-dS-PWb" id="4g9-P1-meF"/>
                         <outlet property="fullscreenButton" destination="jMe-aW-thg" id="cGD-W0-jYl"/>
                         <outlet property="swapButton" destination="Dr3-za-BZP" id="yAE-gB-mtt"/>
                     </connections>

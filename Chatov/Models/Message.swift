@@ -15,7 +15,7 @@ class Message : NSObject, Mappable, MKAnnotation {
     var text = ""
 
     var imageUrl: String?
-    var image = Variable<UIImage?>(nil)
+    var image: Variable<UIImage?>?
 
     @objc var coordinate = kCLLocationCoordinate2DInvalid
     var coordinateIsValid : Bool {

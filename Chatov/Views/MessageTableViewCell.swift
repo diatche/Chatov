@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class MessageTableViewCell : UITableViewCell {
 
     let bubbleImageView = UIImageView()
     let bubbleTailImageView = UIImageView()
+    var disposeBag = DisposeBag()
 
     var isShowingBubbleTail : Bool = false {
         didSet {
@@ -31,6 +33,11 @@ class MessageTableViewCell : UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
 
     func setup() {

@@ -34,7 +34,7 @@ class LocationManager {
             stream = stream.startWith(currentLocation)
         }
         stream = stream.filter { location -> Bool in
-            return location.horizontalAccuracy >= 0 && location.horizontalAccuracy < kCLLocationAccuracyNearestTenMeters
+            return location.horizontalAccuracy >= 0 && location.horizontalAccuracy < kCLLocationAccuracyHundredMeters
         }
         .map {
             self.locationManager.stopUpdatingLocation()

@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 import RxSwift
 import ObjectMapper
 
@@ -20,6 +21,7 @@ class Manager {
     var messageHandle: FIRDatabaseHandle!
     var storageReference: FIRStorageReference!
     var messages = Variable<[Message]>([])
+    var tempLocalMessagesByKey = [String: Message]()
 
     init() {
         configureDatabase()
@@ -30,17 +32,41 @@ class Manager {
     }
 
     private func configureDatabase() {
+        FIRDatabase.database().persistenceEnabled = true
         databaseReference = FIRDatabase.database().reference()
 
         messageHandle = databaseReference.child(Manager.messagesKey).observeEventType(.ChildAdded, withBlock: { [unowned self] snapshot in
-            self.messages.value.append(Manager.messageFromSnapshot(snapshot))
+            // Check if already displayed locally
+            if self.tempLocalMessagesByKey[snapshot.key] != nil {
+                self.tempLocalMessagesByKey[snapshot.key] = nil
+            }
+            else {
+                // Received from server
+                self.messages.value.append(Manager.messageFromSnapshot(snapshot))
+            }
         })
 
         storageReference = FIRStorage.storage().referenceForURL("gs://chatov-e9822.appspot.com")
     }
 
     func sendMessage(message: Message) {
-        databaseReference.child(Manager.messagesKey).childByAutoId().setValue(message.toJSON())
+        let messageRef = databaseReference.child(Manager.messagesKey).childByAutoId()
+
+        // Add message
+        tempLocalMessagesByKey[messageRef.key] = message
+        messages.value.append(message)
+
+        // Save to cloud
+        messageRef.setValue(message.toJSON())
+
+        // Check for media
+        if let unsavedImage = message.image?.value {
+            // Upload image
+            _ = uploadImage(unsavedImage).subscribeNext { imageUrl in
+                message.imageUrl = imageUrl
+                messageRef.setValue(message.toJSON())
+            }
+        }
     }
 
     func uploadImage(image: UIImage) -> Observable<String> {
