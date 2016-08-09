@@ -1,5 +1,5 @@
 //
-//  Manager.swift
+//  MessageManager.swift
 //  Chatov
 //
 //  Created by Pavel Diatchenko on 5/08/16.
@@ -12,10 +12,10 @@ import FirebaseStorage
 import RxSwift
 import ObjectMapper
 
-class Manager {
+class MessageManager {
     static let messagesKey = "messages"
 
-    static let sharedInstance = Manager()
+    static let sharedInstance = MessageManager()
 
     var databaseReference: FIRDatabaseReference!
     var messageHandle: FIRDatabaseHandle!
@@ -28,21 +28,21 @@ class Manager {
     }
 
     deinit {
-        databaseReference.child(Manager.messagesKey).removeObserverWithHandle(messageHandle)
+        databaseReference.child(MessageManager.messagesKey).removeObserverWithHandle(messageHandle)
     }
 
     private func configureDatabase() {
         FIRDatabase.database().persistenceEnabled = true
         databaseReference = FIRDatabase.database().reference()
 
-        messageHandle = databaseReference.child(Manager.messagesKey).observeEventType(.ChildAdded, withBlock: { [unowned self] snapshot in
+        messageHandle = databaseReference.child(MessageManager.messagesKey).observeEventType(.ChildAdded, withBlock: { [unowned self] snapshot in
             // Check if already displayed locally
             if self.tempLocalMessagesByKey[snapshot.key] != nil {
                 self.tempLocalMessagesByKey[snapshot.key] = nil
             }
             else {
                 // Received from server
-                self.messages.value.append(Manager.messageFromSnapshot(snapshot))
+                self.messages.value.append(MessageManager.messageFromSnapshot(snapshot))
             }
         })
 
@@ -50,7 +50,7 @@ class Manager {
     }
 
     func sendMessage(message: Message) {
-        let messageRef = databaseReference.child(Manager.messagesKey).childByAutoId()
+        let messageRef = databaseReference.child(MessageManager.messagesKey).childByAutoId()
 
         // Add message
         tempLocalMessagesByKey[messageRef.key] = message

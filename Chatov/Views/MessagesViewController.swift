@@ -51,7 +51,7 @@ class MessagesViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
 
         // Bind cells to messages
-        let messages = Manager.sharedInstance.messages.asObservable()
+        let messages = MessageManager.sharedInstance.messages.asObservable()
         messages.bindTo(tableView.rx_itemsWithCellFactory) { (tableView, row, message) in
             let cell: MessageTableViewCell
 

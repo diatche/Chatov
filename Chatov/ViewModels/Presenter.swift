@@ -20,7 +20,7 @@ class Presenter {
     func sendTextMessage(text: String) {
         let message = Message()
         message.text = text
-        Manager.sharedInstance.sendMessage(message)
+        MessageManager.sharedInstance.sendMessage(message)
     }
 
     func sendGeoLocation() {
@@ -32,19 +32,19 @@ class Presenter {
     private func sendGeoLocation(location: CLLocation) {
         let message = Message()
         message.coordinate = location.coordinate
-        Manager.sharedInstance.sendMessage(message)
+        MessageManager.sharedInstance.sendMessage(message)
     }
 
     func sendImage(image: UIImage) {
         let message = Message()
         message.image = Variable<UIImage?>(image)
-        Manager.sharedInstance.sendMessage(message)
+        MessageManager.sharedInstance.sendMessage(message)
     }
 
     func receiveImageInMessage(message: Message) -> Observable<UIImage> {
         if message.image == nil {
             message.image = Variable<UIImage?>(nil)
-            _ = Manager.sharedInstance.downloadImage(message.imageUrl!).retry(3).subscribeNext { image in
+            _ = MessageManager.sharedInstance.downloadImage(message.imageUrl!).retry(3).subscribeNext { image in
                 message.image!.value = image
             }
         }
