@@ -15,7 +15,7 @@
 		A41117D31D548B2C00163D0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41117D11D548B2C00163D0C /* LaunchScreen.storyboard */; };
 		A41117DD1D548D0500163D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41117DC1D548D0500163D0C /* GoogleService-Info.plist */; };
 		A41117E01D54AF5E00163D0C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117DF1D54AF5E00163D0C /* MessageTableViewCell.swift */; };
-		A41117E51D54B69C00163D0C /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E41D54B69C00163D0C /* Manager.swift */; };
+		A41117E51D54B69C00163D0C /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E41D54B69C00163D0C /* MessageManager.swift */; };
 		A41117E71D54B85F00163D0C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E61D54B85F00163D0C /* Message.swift */; };
 		A41117E91D54C02E00163D0C /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E81D54C02E00163D0C /* Presenter.swift */; };
 		A433E3E21D59E9FF001DF292 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433E3E11D59E9FF001DF292 /* PhotoViewController.swift */; };
@@ -40,7 +40,7 @@
 		A41117D41D548B2C00163D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A41117DC1D548D0500163D0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A41117DF1D54AF5E00163D0C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTableViewCell.swift; path = Views/MessageTableViewCell.swift; sourceTree = "<group>"; };
-		A41117E41D54B69C00163D0C /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Service/Manager.swift; sourceTree = "<group>"; };
+		A41117E41D54B69C00163D0C /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageManager.swift; path = Service/MessageManager.swift; sourceTree = "<group>"; };
 		A41117E61D54B85F00163D0C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
 		A41117E81D54C02E00163D0C /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Presenter.swift; path = ViewModels/Presenter.swift; sourceTree = "<group>"; };
 		A433E3E11D59E9FF001DF292 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = Views/PhotoViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		A41117E31D54B63A00163D0C /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				A41117E41D54B69C00163D0C /* Manager.swift */,
+				A41117E41D54B69C00163D0C /* MessageManager.swift */,
 				A4BAF9DF1D586C370063B89E /* LocationManager.swift */,
 			);
 			name = Service;
@@ -297,7 +297,7 @@
 				A4BAF9E41D588F260063B89E /* TextMessageTableViewCell.swift in Sources */,
 				A433E3E21D59E9FF001DF292 /* PhotoViewController.swift in Sources */,
 				A41117E71D54B85F00163D0C /* Message.swift in Sources */,
-				A41117E51D54B69C00163D0C /* Manager.swift in Sources */,
+				A41117E51D54B69C00163D0C /* MessageManager.swift in Sources */,
 				A467FF9A1D58C12500FF1D5E /* ImageMessageTableViewCell.swift in Sources */,
 				A467FF981D58ACA500FF1D5E /* CameraViewController.swift in Sources */,
 				A433E3EE1D5A13FB001DF292 /* PhotoCollectionViewCell.swift in Sources */,
