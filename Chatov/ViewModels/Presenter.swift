@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import CoreLocation
 
+/// This class transforms data between services and views
 class Presenter {
     static let sharedInstance = Presenter()
     private static let locationManager = CLLocationManager()
@@ -43,13 +44,16 @@ class Presenter {
 
     func receiveImageInMessage(message: Message) -> Observable<UIImage> {
         if message.image == nil {
+            // Create image variable so that we dont make two requests
             message.image = Variable<UIImage?>(nil)
             if let imageUrl = message.imageUrl {
+                // Download image
                 _ = MessageManager.sharedInstance.downloadImage(imageUrl).retry(3).subscribeNext { image in
                     message.image?.value = image
                 }
             }
         }
+        // Publish when we get an actual image
         return message.image!
             .asObservable()
             .filter { $0 != nil }
