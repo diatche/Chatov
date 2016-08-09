@@ -18,6 +18,9 @@
 		A41117E51D54B69C00163D0C /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E41D54B69C00163D0C /* Manager.swift */; };
 		A41117E71D54B85F00163D0C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E61D54B85F00163D0C /* Message.swift */; };
 		A41117E91D54C02E00163D0C /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41117E81D54C02E00163D0C /* Presenter.swift */; };
+		A433E3E21D59E9FF001DF292 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433E3E11D59E9FF001DF292 /* PhotoViewController.swift */; };
+		A433E3EC1D5A129A001DF292 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A433E3EB1D5A129A001DF292 /* Photos.framework */; };
+		A433E3EE1D5A13FB001DF292 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433E3ED1D5A13FB001DF292 /* PhotoCollectionViewCell.swift */; };
 		A467FF981D58ACA500FF1D5E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467FF971D58ACA500FF1D5E /* CameraViewController.swift */; };
 		A467FF9A1D58C12500FF1D5E /* ImageMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467FF991D58C12500FF1D5E /* ImageMessageTableViewCell.swift */; };
 		A4BAF9DC1D5863F50063B89E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4BAF9DB1D5863F50063B89E /* MapKit.framework */; };
@@ -40,6 +43,10 @@
 		A41117E41D54B69C00163D0C /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Service/Manager.swift; sourceTree = "<group>"; };
 		A41117E61D54B85F00163D0C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
 		A41117E81D54C02E00163D0C /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Presenter.swift; path = ViewModels/Presenter.swift; sourceTree = "<group>"; };
+		A433E3E11D59E9FF001DF292 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = Views/PhotoViewController.swift; sourceTree = "<group>"; };
+		A433E3E91D5A121C001DF292 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		A433E3EB1D5A129A001DF292 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		A433E3ED1D5A13FB001DF292 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = Views/PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		A467FF971D58ACA500FF1D5E /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = Views/CameraViewController.swift; sourceTree = "<group>"; };
 		A467FF991D58C12500FF1D5E /* ImageMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageMessageTableViewCell.swift; path = Views/ImageMessageTableViewCell.swift; sourceTree = "<group>"; };
 		A4BAF9DB1D5863F50063B89E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -55,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A433E3EC1D5A129A001DF292 /* Photos.framework in Frameworks */,
 				A4BAF9DC1D5863F50063B89E /* MapKit.framework in Frameworks */,
 				48371E540100907CF8F9EB75 /* Pods_Chatov.framework in Frameworks */,
 			);
@@ -75,6 +83,8 @@
 		62607DBD0D1874865B7909BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A433E3EB1D5A129A001DF292 /* Photos.framework */,
+				A433E3E91D5A121C001DF292 /* PhotosUI.framework */,
 				A4BAF9DB1D5863F50063B89E /* MapKit.framework */,
 				A6D8FC9B7F6513CEF0654347 /* Pods_Chatov.framework */,
 			);
@@ -125,6 +135,8 @@
 				A4BAF9E11D588CA30063B89E /* MapMessageTableViewCell.swift */,
 				A467FF991D58C12500FF1D5E /* ImageMessageTableViewCell.swift */,
 				A467FF971D58ACA500FF1D5E /* CameraViewController.swift */,
+				A433E3E11D59E9FF001DF292 /* PhotoViewController.swift */,
+				A433E3ED1D5A13FB001DF292 /* PhotoCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -283,10 +295,12 @@
 				A41117C91D548B2C00163D0C /* AppDelegate.swift in Sources */,
 				A4BAF9E01D586C370063B89E /* LocationManager.swift in Sources */,
 				A4BAF9E41D588F260063B89E /* TextMessageTableViewCell.swift in Sources */,
+				A433E3E21D59E9FF001DF292 /* PhotoViewController.swift in Sources */,
 				A41117E71D54B85F00163D0C /* Message.swift in Sources */,
 				A41117E51D54B69C00163D0C /* Manager.swift in Sources */,
 				A467FF9A1D58C12500FF1D5E /* ImageMessageTableViewCell.swift in Sources */,
 				A467FF981D58ACA500FF1D5E /* CameraViewController.swift in Sources */,
+				A433E3EE1D5A13FB001DF292 /* PhotoCollectionViewCell.swift in Sources */,
 				A4BAF9E21D588CA30063B89E /* MapMessageTableViewCell.swift in Sources */,
 				A41117E01D54AF5E00163D0C /* MessageTableViewCell.swift in Sources */,
 			);

@@ -13,6 +13,5 @@ target 'Chatov' do
   pod 'RxCocoa'
   pod 'ObjectMapper'
   pod 'NextGrowingTextView'
-  pod 'ImagePickerSheetController', '~> 0.9.1'
 
 end

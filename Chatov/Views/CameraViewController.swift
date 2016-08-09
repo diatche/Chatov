@@ -12,10 +12,13 @@ import RxCocoa
 
 class CameraViewController: UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    static let cameraCollapsedHeight : CGFloat = 350
+
     var fullscreenButton: UIButton?
     var captureButton: UIButton?
     var swapButton: UIButton?
     var stackView: UIStackView?
+    var heightConstraint : NSLayoutConstraint!
 
     let disposeBag = DisposeBag()
 
@@ -24,7 +27,11 @@ class CameraViewController: UIImagePickerController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.translatesAutoresizingMaskIntoConstraints = false
         delegate = self
+
+        heightConstraint = NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1, constant: CameraViewController.cameraCollapsedHeight)
+        view.addConstraint(heightConstraint)
 
         if UIImagePickerController.availableMediaTypesForSourceType(.Camera)?.count ?? 0 != 0 {
             sourceType = .Camera
@@ -57,7 +64,7 @@ class CameraViewController: UIImagePickerController, UIImagePickerControllerDele
 
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        
+
         // Scale to fill
         var newFrame = CGRect()
         if superBounds.width / 3 > superBounds.height / 4 {
@@ -101,6 +108,14 @@ class CameraViewController: UIImagePickerController, UIImagePickerControllerDele
 
     func fullscreenToggle() {
         wantsFullscreen.value = !wantsFullscreen.value
+        heightConstraint.constant = (wantsFullscreen.value
+            ? UIApplication.sharedApplication().keyWindow?.frame.height ?? CameraViewController.cameraCollapsedHeight
+            : CameraViewController.cameraCollapsedHeight
+        )
         fullscreenButton?.selected = wantsFullscreen.value
+
+        UIView.animateWithDuration(0.25) {
+            self.view.layoutIfNeeded()
+        }
     }
 }

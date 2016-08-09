@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ImagePickerSheetController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>NextGrowingTextView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>195549FAC1A08073809AAE99B5C06E34</key>
+		<key>3DB0F576624B109BDEDF1A5D39C038A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2AAAB9973850C35994DC04473435E1A3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3C9303A59F2430F368EEF6161A807445</key>
+		<key>518BD3B7405B377F58BAC4F6A16BA628</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>69872565277407B3A566F8936F856D9E</key>
+		<key>669A98E4C795E44F00702F4E233F738F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
