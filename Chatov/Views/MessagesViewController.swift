@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MessagesViewController.swift
 //  Chatov
 //
 //  Created by Pavel Diatchenko on 5/08/16.
@@ -12,7 +12,7 @@ import RxCocoa
 import NextGrowingTextView
 import MapKit
 
-class ViewController: UIViewController {
+class MessagesViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var inputContainerViewBottom : NSLayoutConstraint!
@@ -95,9 +95,9 @@ class ViewController: UIViewController {
     }
 
     func setupInputView() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessagesViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessagesViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
         inputTextView.textContainerInset = UIEdgeInsets(top: 14, left: 6, bottom: 14, right: 8)
         inputTextView.placeholderAttributedText = NSAttributedString(string: "Ваше сообщение...",
