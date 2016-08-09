@@ -84,7 +84,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HiO-VP-1CV">
-                                                    <rect key="frame" x="445.5" y="109" width="37" height="37"/>
+                                                    <rect key="frame" x="445" y="109" width="37" height="37"/>
                                                 </activityIndicatorView>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eNC-Tt-T5F">
                                                     <rect key="frame" x="344" y="8" width="248" height="240"/>
@@ -154,27 +154,25 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <containerView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kF-sm-0Uk">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4c-Pc-VT9">
                                         <rect key="frame" x="0.0" y="83" width="600" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" id="7IR-Sf-G7B"/>
+                                            <constraint firstAttribute="height" id="vql-7s-H47"/>
                                         </constraints>
-                                        <connections>
-                                            <segue destination="dDk-8W-MfK" kind="embed" id="zyl-3Y-ftA"/>
-                                        </connections>
-                                    </containerView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="0kF-sm-0Uk" secondAttribute="trailing" id="634-uH-G4f"/>
+                                    <constraint firstItem="m4c-Pc-VT9" firstAttribute="top" secondItem="oVl-MM-kAL" secondAttribute="bottom" constant="12" id="1dz-6G-Qck"/>
                                     <constraint firstItem="oVl-MM-kAL" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" constant="8" id="6mj-8S-TWg"/>
                                     <constraint firstItem="oVl-MM-kAL" firstAttribute="top" secondItem="SFC-WQ-V9f" secondAttribute="bottom" constant="12" id="6sJ-HH-PCk"/>
                                     <constraint firstItem="SFC-WQ-V9f" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" constant="8" id="7Xa-wp-4md"/>
-                                    <constraint firstAttribute="bottom" secondItem="0kF-sm-0Uk" secondAttribute="bottom" id="ASZ-Jr-LvY"/>
+                                    <constraint firstAttribute="bottom" secondItem="m4c-Pc-VT9" secondAttribute="bottom" id="8nC-EL-rXb"/>
+                                    <constraint firstItem="m4c-Pc-VT9" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" id="B1M-D2-ORt"/>
                                     <constraint firstItem="guI-V7-BAx" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" id="Dsi-x4-dYp"/>
                                     <constraint firstAttribute="trailing" secondItem="amf-rm-8E8" secondAttribute="trailing" id="HM6-Le-eP5"/>
-                                    <constraint firstItem="0kF-sm-0Uk" firstAttribute="top" secondItem="oVl-MM-kAL" secondAttribute="bottom" constant="12" id="KE6-4x-Tbb"/>
-                                    <constraint firstItem="0kF-sm-0Uk" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" id="OBH-WV-fBB"/>
+                                    <constraint firstAttribute="trailing" secondItem="m4c-Pc-VT9" secondAttribute="trailing" id="OK4-Q0-Le9"/>
                                     <constraint firstItem="amf-rm-8E8" firstAttribute="leading" secondItem="vkE-0X-xvc" secondAttribute="leading" id="Pli-5F-d7S"/>
                                     <constraint firstAttribute="trailing" secondItem="oVl-MM-kAL" secondAttribute="trailing" constant="8" id="Q0b-vk-ejq"/>
                                     <constraint firstItem="amf-rm-8E8" firstAttribute="top" secondItem="vkE-0X-xvc" secondAttribute="top" id="Rrp-bi-ZpH"/>
@@ -201,8 +199,8 @@
                     <connections>
                         <outlet property="cameraButton" destination="yvn-jm-9Ee" id="sH5-E1-qit"/>
                         <outlet property="geoButton" destination="DUf-Dd-b12" id="aVc-oI-MbL"/>
-                        <outlet property="imagePickerContainerHeight" destination="7IR-Sf-G7B" id="ddH-Zf-b5M"/>
-                        <outlet property="imagePickerContainerView" destination="0kF-sm-0Uk" id="fSV-Ek-KVQ"/>
+                        <outlet property="imagePickerContainerHeight" destination="vql-7s-H47" id="gDG-xy-Zne"/>
+                        <outlet property="imagePickerContainerView" destination="m4c-Pc-VT9" id="6Gb-1e-6xz"/>
                         <outlet property="imagesButton" destination="ASK-SI-GQe" id="els-CE-4IV"/>
                         <outlet property="inputContainerView" destination="vkE-0X-xvc" id="wB6-gp-Qu0"/>
                         <outlet property="inputContainerViewBottom" destination="9ig-QZ-Tc3" id="waN-Is-1Yf"/>
@@ -215,79 +213,9 @@
             </objects>
             <point key="canvasLocation" x="385" y="375"/>
         </scene>
-        <!--Camera View Controller-->
-        <scene sceneID="Fpq-EX-mAQ">
-            <objects>
-                <viewController id="dDk-8W-MfK" customClass="CameraViewController" customModule="Chatov" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4tk-uE-FaZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="KjL-Ty-EpO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AV3-3x-nor">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myp-mP-OOc">
-                                <rect key="frame" x="20" y="0.0" width="560" height="0.0"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-zs-NYX">
-                                        <rect key="frame" x="0.0" y="-48" width="560" height="34"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMe-aW-thg">
-                                                <rect key="frame" x="0.0" y="5" width="186.5" height="23"/>
-                                                <state key="normal" image="camera_interface_fullscreen"/>
-                                                <state key="selected" image="fullscreen_close"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D92-dS-PWb">
-                                                <rect key="frame" x="186" y="0.0" width="187" height="34"/>
-                                                <state key="normal" title="Отпр"/>
-                                                <connections>
-                                                    <action selector="captureAction" destination="dDk-8W-MfK" eventType="touchUpInside" id="b2r-cx-I5G"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr3-za-BZP">
-                                                <rect key="frame" x="373" y="5" width="186.5" height="24"/>
-                                                <state key="normal" image="camera_interface_switch"/>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="3WR-Uc-INV"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="sQh-zs-NYX" secondAttribute="bottom" constant="14" id="Boy-VF-cZ3"/>
-                                    <constraint firstItem="sQh-zs-NYX" firstAttribute="leading" secondItem="myp-mP-OOc" secondAttribute="leading" id="oTn-b4-dZr"/>
-                                    <constraint firstAttribute="trailing" secondItem="sQh-zs-NYX" secondAttribute="trailing" id="pRg-FL-4UA"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="myp-mP-OOc" secondAttribute="trailing" id="FIz-LA-Skr"/>
-                            <constraint firstItem="myp-mP-OOc" firstAttribute="leading" secondItem="AV3-3x-nor" secondAttribute="leadingMargin" id="H78-Kn-r9Z"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="myp-mP-OOc" secondAttribute="bottom" id="bMj-3t-ZPg"/>
-                            <constraint firstItem="myp-mP-OOc" firstAttribute="top" secondItem="AV3-3x-nor" secondAttribute="topMargin" id="yPZ-nH-C0D"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="buttonContainerView" destination="myp-mP-OOc" id="4Gv-kO-snB"/>
-                        <outlet property="captureButton" destination="D92-dS-PWb" id="4g9-P1-meF"/>
-                        <outlet property="fullscreenButton" destination="jMe-aW-thg" id="cGD-W0-jYl"/>
-                        <outlet property="swapButton" destination="Dr3-za-BZP" id="yAE-gB-mtt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6uk-KM-OcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1053" y="1087"/>
-        </scene>
     </scenes>
     <resources>
         <image name="camera" width="24" height="18"/>
-        <image name="camera_interface_fullscreen" width="23" height="23"/>
-        <image name="camera_interface_switch" width="30" height="24"/>
-        <image name="fullscreen_close" width="23" height="23"/>
         <image name="geo" width="21" height="21"/>
         <image name="images" width="22" height="22"/>
     </resources>

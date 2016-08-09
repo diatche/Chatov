@@ -55,6 +55,9 @@ class CameraViewController: UIImagePickerController, UIImagePickerControllerDele
         let stackView = self.stackView
             else { return }
 
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        
         // Scale to fill
         var newFrame = CGRect()
         if superBounds.width / 3 > superBounds.height / 4 {
@@ -75,6 +78,8 @@ class CameraViewController: UIImagePickerController, UIImagePickerControllerDele
         buttonFrame.origin.x = -newFrame.minX
         buttonFrame.origin.y = newFrame.maxY - buttonFrame.height
         stackView.frame = buttonFrame
+
+        CATransaction.commit()
     }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

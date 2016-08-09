@@ -11,8 +11,11 @@ import RxSwift
 import RxCocoa
 import NextGrowingTextView
 import MapKit
+import ImagePickerSheetController
 
 class MessagesViewController: UIViewController {
+
+    static let imagePickerHeight : CGFloat = 350
 
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var inputContainerViewBottom : NSLayoutConstraint!
@@ -24,11 +27,15 @@ class MessagesViewController: UIViewController {
     @IBOutlet weak var geoButton : UIButton!
     @IBOutlet weak var imagePickerContainerView : UIView!
     @IBOutlet weak var imagePickerContainerHeight : NSLayoutConstraint!
+
     var disposeBag = DisposeBag()
     var lastKeyboardHeight : CGFloat = 0
     var lastMessageInputHeight : CGFloat = 0
     var isShowingImagePicker = false
+    var isShowingCamera = false
     var isShowingImagePickerFullscreen = false
+    var cameraViewController : CameraViewController?
+    var imagePickerSheetController : ImagePickerSheetController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,12 +135,12 @@ class MessagesViewController: UIViewController {
         .addDisposableTo(disposeBag)
 
         cameraButton.rx_tap.subscribeNext {
-            self.showImagePicker()
+            self.showImagePicker(withCamera: true)
         }
         .addDisposableTo(disposeBag)
 
         imagesButton.rx_tap.subscribeNext {
-            self.showImagePicker()
+            self.showImagePicker(withCamera: false)
         }
         .addDisposableTo(disposeBag)
 
@@ -141,15 +148,6 @@ class MessagesViewController: UIViewController {
             Presenter.sharedInstance.sendGeoLocation()
         }
         .addDisposableTo(disposeBag)
-
-        if let cameraViewController = childViewControllers[0] as? CameraViewController {
-            cameraViewController.wantsFullscreen.asObservable().skip(1).subscribeNext { wantsFullscreen in
-                self.isShowingImagePickerFullscreen = wantsFullscreen
-                cameraViewController.view.setNeedsLayout()
-                self.showImagePicker()
-            }
-            .addDisposableTo(disposeBag)
-        }
     }
 
     func keyboardWillHide(sender: NSNotification) {
@@ -178,7 +176,7 @@ class MessagesViewController: UIViewController {
             self.tableView.scrollIndicatorInsets.bottom = inset
         }, completion: { _ in
             if !self.isShowingImagePicker {
-                self.imagePickerContainerView.hidden = true
+                self.resetImagePicker()
             }
         })
         scrollToEndIfNeeded()
@@ -195,17 +193,56 @@ class MessagesViewController: UIViewController {
         updateWithLastKeyboardHeight()
     }
 
-    func showImagePicker() {
-        isShowingImagePicker = true
-        imagePickerContainerView.hidden = false
-        imagePickerContainerHeight.constant = (isShowingImagePickerFullscreen ? self.view.frame.size.height : 350)
+    func showImagePicker(withCamera useCamera: Bool) {
+        if !isShowingImagePicker || isShowingCamera != useCamera {
+            resetImagePicker()
+            if useCamera {
+                setupCameraViewController()
+            }
+            else {
+
+            }
+
+            isShowingImagePicker = true
+            isShowingCamera = useCamera
+        }
+
+        imagePickerContainerHeight.constant = MessagesViewController.imagePickerHeight
+
         inputTextView.resignFirstResponder()
         updateWithLastKeyboardHeight()
+    }
+
+    func setupCameraViewController() {
+        cameraViewController = CameraViewController()
+        addChildViewController(cameraViewController!)
+        imagePickerContainerView.addSubview(cameraViewController!.view)
+        cameraViewController!.view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+
+        cameraViewController!.wantsFullscreen.asObservable().skip(1).subscribeNext { wantsFullscreen in
+            self.imagePickerContainerHeight.constant = (
+                wantsFullscreen
+                    ? self.view.frame.size.height
+                    : MessagesViewController.imagePickerHeight
+            )
+            self.updateWithLastKeyboardHeight()
+        }
+        .addDisposableTo(disposeBag)
     }
 
     func hideImagePicker() {
         isShowingImagePicker = false
         imagePickerContainerHeight.constant = 0
+    }
+
+    func resetImagePicker() {
+        imagePickerContainerView.subviews.forEach { $0.removeFromSuperview() }
+
+        cameraViewController?.removeFromParentViewController()
+        cameraViewController = nil
+
+        imagePickerSheetController?.removeFromParentViewController()
+        imagePickerSheetController = nil
     }
 
     func scrollToEndIfNeeded() {
